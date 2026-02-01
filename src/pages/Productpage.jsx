@@ -2,7 +2,7 @@ import React from 'react'
 
 const Productpage = () => {
   return (
-    <div>Productpage</div>
+    <div className="text-2xl font-bold text-indigo-700 text-center py-8">Productpage</div>
   )
 }
 
