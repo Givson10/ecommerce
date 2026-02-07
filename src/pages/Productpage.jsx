@@ -5,18 +5,67 @@ import { useCart } from '../hooks/useCart'
 import categorydata from '../data/Categories';
 import CategoryTab from '../compoents/Products/CategoryTab';
 import SearchProduct from '../compoents/Products/SearchProduct';
+import ProductRange from '../compoents/Products/ProductRange';
+import FilterByRating from '../compoents/Products/FilterByRating';
   
 
 
 export default function Productpage() {
   
   const {items, loading} = useCart();
+
   const [selectedCategory,setSelectedCategory] = useState("");
+
   const [search,setSearch]=useState("")
+
+  const [minValue,setMinValue]= useState(0);
+  const [maxValue,setMaxValue]= useState(1000);
+
+  const [minRating,setMinRating]= useState(0);
+  const [maxRating,setMaxRating]= useState(5);
+
+  console.log("minRatig", minRating);
+  console.log("maxRating", maxRating);
+ 
+
   console.log("search",search);
+
   console.log("selectedCategory",selectedCategory);
-  const filterItems = selectedCategory === "" ? items : items.filter((product)=> product.category === selectedCategory);
+
+
+  let filterItems = selectedCategory === "" ? items : items.filter((product)=> product.category === selectedCategory);
+
   console.log("filterItems",filterItems);
+
+  function filterBySearch(items) {
+    if (!search){
+      return items;
+    }
+
+    return items.filter((product) =>{
+     return product.title.toLowerCase().includes(search.toLowerCase())
+    });
+  }
+
+  filterItems = filterBySearch(filterItems);
+
+  function productRangeFilter(filterItems) {
+    return filterItems.filter((item)=> {
+      return item.price >= minValue && item.price <= maxValue;
+    })
+  }
+
+  filterItems = productRangeFilter(filterItems);
+
+  function productRatingFilter(filterItems) {
+    return filterItems.filter((item)=> {
+      return item.rating.rate >= minRating && item.rating.rate <= maxRating;
+    })
+  }
+
+
+
+  filterItems = productRatingFilter(filterItems);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-purple-600 via-blue-600 to-pink-600 p-8">
@@ -26,6 +75,17 @@ export default function Productpage() {
         </h2>
         
         <SearchProduct setSearch={setSearch}/>
+        <ProductRange 
+        setMaxValue={setMaxValue}
+        setMinValue={setMinValue}
+        minValue={minValue}
+        maxValue={maxValue}
+        />
+
+        <FilterByRating 
+        setMaxRating={setMaxRating} 
+        setMinRating={setMinRating}
+        />
         
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <CategoryTab

@@ -1,8 +1,10 @@
 .search-form {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
   position: relative;
+  width: 100%;
 }
 
 .search-input {

@@ -5,9 +5,19 @@ function SearchProduct({setSearch}) {
     function onType(event){
         setSearch(event.target.value)
 
+    
     }
+
+    function onSubmit(e){
+      e.preventDefault();
+
+
+
+    }
+
+
   return (
-    <form className="search-form">
+    <form onSubmit={onSubmit} className="flex justify-center items-center w-full mb-8">
         <input 
           type='text' 
           placeholder='Enter Product Name'
