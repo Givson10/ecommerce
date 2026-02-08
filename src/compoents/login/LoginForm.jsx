@@ -68,7 +68,7 @@ function LoginForm() {
         className="w-full px-4 py-3 mb-6 rounded-xl bg-white/90 backdrop-blur-sm border-none shadow-lg transition-all duration-300 outline-none text-gray-800 font-medium focus:shadow-2xl focus:-translate-y-1 focus:bg-white/95 focus:ring-2 focus:ring-purple-400/50"
         />
 
-        <button type='submit' className="w-full px-6 py-3 bg-linear-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 hover:from-purple-700 hover:to-pink-700">
+        <button type='submit' className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 hover:from-purple-700 hover:to-pink-700">
             Submit
             </button>
 
